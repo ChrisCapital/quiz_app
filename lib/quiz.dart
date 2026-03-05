@@ -12,17 +12,24 @@ class Quiz extends StatefulWidget {
 }
 
 class _QuizState extends State<Quiz> {
-  final List<String> selectedAnswers = [];
+  List<String> selectedAnswers = [];
   
   void chooseAnswer(String answer){
     selectedAnswers.add(answer);
+    if(selectedAnswers.length == questions.length){
+      //hey we done bro
+      setState((){
+        selectedAnswers = [];
+        activeScreen = StartScreen(switchScreen);
+      });
+    }
   }
 
   Widget? activeScreen;
   void switchScreen() {
     setState(() {
       
-      activeScreen = QuestionsScreen();
+      activeScreen = QuestionsScreen(onSelectedAnswer: chooseAnswer);
     });
   }
 
