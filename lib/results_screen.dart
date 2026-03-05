@@ -4,7 +4,9 @@ import 'package:quiz_app/questions_screen.dart';
 
 
 class ResultsScreen extends StatelessWidget{
-  const ResultsScreen({super.key});
+  const ResultsScreen({super.key, required this.chosenAnswers});
+
+  final List<String> chosenAnswers;
 
   @override
   Widget build(context)
@@ -30,16 +32,3 @@ class ResultsScreen extends StatelessWidget{
     );
   }
 }
-
-void chooseAnswer(String answer)
-  {
-    selectedAnswers.add(answer);
-    if(selectedAnswers.length == questions.length){
-      //switch to the results screen
-      //setting to start screen for now
-      setState(() {
-        selectedAnswers = [];
-        activeScreen = const ResultsScreen();
-      });
-    }
-  }
